@@ -32,11 +32,6 @@ function playRound(playerSection, computerSelection) {
   }
 }
 
-// const playerSection = 'rock';
-// const computerSelection = getComputerChoice();
-// console.log(`computer choses ${computerSelection}`);
-// console.log(playRound(playerSection, computerSelection));
-
 function game() {
   let playerWins = 0;
   let computerWins = 0;
