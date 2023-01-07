@@ -32,7 +32,42 @@ function playRound(playerSection, computerSelection) {
   }
 }
 
-const playerSection = 'rock';
-const computerSelection = getComputerChoice();
-console.log(`computer choses ${computerSelection}`);
-console.log(playRound(playerSection, computerSelection));
+// const playerSection = 'rock';
+// const computerSelection = getComputerChoice();
+// console.log(`computer choses ${computerSelection}`);
+// console.log(playRound(playerSection, computerSelection));
+
+function game() {
+  let playerWins = 0;
+  let computerWins = 0;
+  while(computerWins<5 && playerWins<5){
+    const playerSection = prompt("Enter your choice");
+    const computerSelection = getComputerChoice();
+    const result = playRound(playerSection, computerSelection);
+    console.log(result);
+    switch(result) {
+      case("You Lose! Paper beats Rock"):
+      case("You Lose! Rock beats Scissors"):
+      case("You Lose! Scissors beats Paper"):
+        computerWins++;
+        break;
+      case("You Win! Paper beats Rock"):
+      case("You Win! Rock beats Scissors"):
+      case("You Win! Scissors beats Paper"):
+        playerWins++;
+        break;
+    }
+    console.log(`score is ${playerWins} - ${computerWins}`);
+    
+    if(playerWins === 5){
+      console.log("YOU HAVE WON THE COMPUTER");
+    }
+    if(computerWins === 5){
+      console.log("THE COMPUTER HAS WON YOU");
+    }
+  }
+
+  
+}
+
+game();
