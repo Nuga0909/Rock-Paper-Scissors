@@ -1,7 +1,6 @@
 // import _ from 'lodash';
-// import './style.css';
+import './style.css';
 
-const { result } = require("lodash");
 
 // const { cli } = require("webpack-dev-server");
 
@@ -125,15 +124,15 @@ function game(result) {
     playerWins = 0;
     computerWins = 0;
     return `<p class="result-head">YOU HAVE WON THE COMPUTER!</p>
-    <p class="">Start a new game?</p>`;  
+    <p class="">Click selection to start a new game...</p>`;  
   }
   if (computerWins === 5) {
     playerWins = 0;
     computerWins = 0;
     return `<p class="result-head">THE COMPUTER HAS WON YOU!</p>
-    <p class="">Start a new game?</p>`;  
+    <p class="">Click selection to start a new game...</p>`;  
   }
   
-  return `<p class="result-head">${result}</p>
+  return `<p class="">${result}</p>
   <p class="score">Score is ${playerWins} - ${computerWins}</p>`;  
 }
