@@ -1,6 +1,10 @@
 // import _ from 'lodash';
 // import './style.css';
 
+const { result } = require("lodash");
+
+// const { cli } = require("webpack-dev-server");
+
 const options = ['rock', 'paper', 'scissors'];
 
 function getComputerChoice() {
@@ -65,4 +69,22 @@ function game() {
 
 }
 
-game();
+// game();
+
+
+const container = document.querySelector('#container');
+const btn1 = document.createElement('button');
+btn1.innerText = 'Rock';
+const btn2 = document.createElement('button');
+btn2.innerText = 'Paper';
+const btn3 = document.createElement('button');
+btn3.innerText = 'Scissors';
+container.append(btn1, btn2, btn3);
+
+
+btn1.addEventListener('click', () => {
+  const computerSelection = getComputerChoice();
+  const result = playRound('rock', computerSelection);
+  console.log(result);
+});
+
