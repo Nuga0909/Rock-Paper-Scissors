@@ -88,3 +88,15 @@ btn1.addEventListener('click', () => {
   console.log(result);
 });
 
+btn2.addEventListener('click', () => {
+  const computerSelection = getComputerChoice();
+  const result = playRound('paper', computerSelection);
+  console.log(result);
+});
+
+btn3.addEventListener('click', () => {
+  const computerSelection = getComputerChoice();
+  const result = playRound('scissors', computerSelection);
+  console.log(result);
+});
+
