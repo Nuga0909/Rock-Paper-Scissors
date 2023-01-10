@@ -36,38 +36,38 @@ function playRound(playerSection, computerSelection) {
   }
 }
 
-function game() {
-  let playerWins = 0;
-  let computerWins = 0;
-  while (computerWins < 5 && playerWins < 5) {
-    const playerSection = prompt("Enter your choice");
-    const computerSelection = getComputerChoice();
-    const result = playRound(playerSection, computerSelection);
-    console.log(result);
-    switch (result) {
-      case ("You Lose! Paper beats Rock"):
-      case ("You Lose! Rock beats Scissors"):
-      case ("You Lose! Scissors beats Paper"):
-        computerWins++;
-        break;
-      case ("You Win! Paper beats Rock"):
-      case ("You Win! Rock beats Scissors"):
-      case ("You Win! Scissors beats Paper"):
-        playerWins++;
-        break;
-    }
-    console.log(`score is ${playerWins} - ${computerWins}`);
+// function game() {
+//   let playerWins = 0;
+//   let computerWins = 0;
+//   while (computerWins < 5 && playerWins < 5) {
+//     const playerSection = prompt("Enter your choice");
+//     const computerSelection = getComputerChoice();
+//     const result = playRound(playerSection, computerSelection);
+//     console.log(dispResult);
+//     switch (result) {
+//       case ("You Lose! Paper beats Rock"):
+//       case ("You Lose! Rock beats Scissors"):
+//       case ("You Lose! Scissors beats Paper"):
+//         computerWins++;
+//         break;
+//       case ("You Win! Paper beats Rock"):
+//       case ("You Win! Rock beats Scissors"):
+//       case ("You Win! Scissors beats Paper"):
+//         playerWins++;
+//         break;
+//     }
+//     console.log(`score is ${playerWins} - ${computerWins}`);
 
-    if (playerWins === 5) {
-      console.log("YOU HAVE WON THE COMPUTER");
-    }
-    if (computerWins === 5) {
-      console.log("THE COMPUTER HAS WON YOU");
-    }
-  }
+//     if (playerWins === 5) {
+//       console.log("YOU HAVE WON THE COMPUTER");
+//     }
+//     if (computerWins === 5) {
+//       console.log("THE COMPUTER HAS WON YOU");
+//     }
+//   }
 
 
-}
+// }
 
 // game();
 
@@ -83,23 +83,57 @@ btn3.innerText = 'Scissors';
 container.append(btn1, btn2, btn3);
 
 
+let playerWins = 0;
+let computerWins = 0;
+
 btn1.addEventListener('click', () => {
   const result = playRound('rock', getComputerChoice());
-  dispResult.innerText = `${result}`;
+  resultCont.innerHTML = game(result);
 });
 
 btn2.addEventListener('click', () => {
   const result = playRound('paper', getComputerChoice());
-  dispResult.innerText = `${result}`;
+  resultCont.innerHTML = game(result);
 });
 
 btn3.addEventListener('click', () => {
   const result = playRound('scissors', getComputerChoice());
-  dispResult.innerText = `${result}`;
+  resultCont.innerHTML = game(result);
 });
 
 // Add a div for displaying results and change all of your console.logs into DOM methods.
-const dispResult = document.createElement('p');
-dispResult.innerText = 'result';
 const resultCont = document.querySelector('#resultCont');
-resultCont.append(dispResult);
+resultCont.innerHTML = '<p>Game has not started</p><p>Click on a button to start a game against the computer</p>'
+
+// Display the running score, and announce a winner of the game once one player reaches 5 points.
+const scores = document.createElement('p');
+
+function game(result) {
+  switch (result) {
+    case ("You Lose! Paper beats Rock"):
+    case ("You Lose! Rock beats Scissors"):
+    case ("You Lose! Scissors beats Paper"):
+      computerWins++;
+      break;
+    case ("You Win! Paper beats Rock"):
+    case ("You Win! Rock beats Scissors"):
+    case ("You Win! Scissors beats Paper"):
+      playerWins++;
+      break;
+  }
+  if (playerWins === 5) {
+    playerWins = 0;
+    computerWins = 0;
+    return `<p class="result-head">YOU HAVE WON THE COMPUTER!</p>
+    <p class="">Start a new game?</p>`;  
+  }
+  if (computerWins === 5) {
+    playerWins = 0;
+    computerWins = 0;
+    return `<p class="result-head">THE COMPUTER HAS WON YOU!</p>
+    <p class="">Start a new game?</p>`;  
+  }
+  
+  return `<p class="result-head">${result}</p>
+  <p class="score">Score is ${playerWins} - ${computerWins}</p>`;  
+}
