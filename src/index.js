@@ -72,6 +72,7 @@ function game() {
 // game();
 
 
+// Create three buttons, one for each selection. Add an event listener to the buttons
 const container = document.querySelector('#container');
 const btn1 = document.createElement('button');
 btn1.innerText = 'Rock';
@@ -83,20 +84,22 @@ container.append(btn1, btn2, btn3);
 
 
 btn1.addEventListener('click', () => {
-  const computerSelection = getComputerChoice();
-  const result = playRound('rock', computerSelection);
-  console.log(result);
+  const result = playRound('rock', getComputerChoice());
+  dispResult.innerText = `${result}`;
 });
 
 btn2.addEventListener('click', () => {
-  const computerSelection = getComputerChoice();
-  const result = playRound('paper', computerSelection);
-  console.log(result);
+  const result = playRound('paper', getComputerChoice());
+  dispResult.innerText = `${result}`;
 });
 
 btn3.addEventListener('click', () => {
-  const computerSelection = getComputerChoice();
-  const result = playRound('scissors', computerSelection);
-  console.log(result);
+  const result = playRound('scissors', getComputerChoice());
+  dispResult.innerText = `${result}`;
 });
 
+// Add a div for displaying results and change all of your console.logs into DOM methods.
+const dispResult = document.createElement('p');
+dispResult.innerText = 'result';
+const resultCont = document.querySelector('#resultCont');
+resultCont.append(dispResult);
